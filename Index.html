@@ -1089,8 +1089,7 @@
   var GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyoCPH36t3z1nVjY-8YziPPkMjPjI9LPHGQxO3378jHO3zzytk1sVOKxmw50Xknbq7-/exec";
 
   // 2. AUTO-DETECT: Hanya aktif jika dibuka di luar Google (Netlify / GitHub / Localhost)
-  if (typeof google === "undefined" || !google.script) { ... }
-  <div class="toast-container" id="toastContainer"></div>
+  if (typeof google === "undefined" || !google.script) {
     var createGasRunner = function(successCallback, failureCallback) {
       return new Proxy({}, {
         get: function(target, prop) {
@@ -1148,9 +1147,13 @@
       });
     }
   });
+
+   if (typeof google === "undefined" || !google.script) { ... }
 </script>
 
-    <!-- ==========================================================================
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
        OVERLAY LOGIN: MERCURY / NEURAL ACCESS DESIGN
        ========================================================================== -->
   <div class="login-overlay" id="loginOverlay">
