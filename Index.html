@@ -1090,6 +1090,7 @@
 
   // 2. AUTO-DETECT: Hanya aktif jika dibuka di luar Google (Netlify / GitHub / Localhost)
   if (typeof google === "undefined" || !google.script) { ... }
+  <div class="toast-container" id="toastContainer"></div>
     var createGasRunner = function(successCallback, failureCallback) {
       return new Proxy({}, {
         get: function(target, prop) {
@@ -1149,9 +1150,7 @@
   });
 </script>
 
-  <div class="toast-container" id="toastContainer"></div>
-
-  <!-- ==========================================================================
+    <!-- ==========================================================================
        OVERLAY LOGIN: MERCURY / NEURAL ACCESS DESIGN
        ========================================================================== -->
   <div class="login-overlay" id="loginOverlay">
