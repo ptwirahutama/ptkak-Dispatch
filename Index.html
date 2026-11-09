@@ -2788,7 +2788,7 @@
       });
     }
 
-    function renderRekapUI(data) {
+function renderRekapUI(data) {
       var totVol = 0, totRit = 0;
       var accordion = document.getElementById('proyekAccordion');
       if (accordion) accordion.innerHTML = '';
@@ -2807,6 +2807,10 @@
                 '<div>' +
                   '<div style="font-size:0.78rem; font-weight:600; color:var(--text-primary);">' + s.proyek + '</div>' +
                   '<div style="font-size:0.68rem; color:var(--text-muted); font-weight:400; margin-top:2px;">' + s.customer + labelMutu + labelMandor + '</div>' +
+                  // [DITAMBAHKAN]: Baris tanggal produksi sesuai referensi
+                  '<div style="font-size:0.68rem; color:var(--text-muted); margin-top:3px; display:flex; align-items:center; gap:4px;">' +
+                    '<i class="fa-regular fa-calendar"></i> Tgl: ' + (s.tanggal || '-') +
+                  '</div>' +
                 '</div>' +
                 '<span class="badge-mutu">' + Number(s.vol).toFixed(1) + ' m³ (' + s.rit + ' Rit)</span>' +
               '</div>' +
@@ -3399,13 +3403,20 @@
               });
             }
 
-            (data.summary || []).forEach(function(s) {
+(data.summary || []).forEach(function(s) {
               totVol += Number(s.vol || 0);
               totRit += Number(s.rit || 0);
               if (accordion) {
                 accordion.innerHTML += `
                   <div style="background:var(--bg-surface); border:1px solid var(--border-subtle); padding:10px 12px; border-radius:6px; display:flex; justify-content:space-between; align-items:center; font-size:0.76rem;">
-                    <div><strong style="color:var(--text-primary);">${s.proyek}</strong><div style="font-size:0.68rem; color:var(--text-muted); margin-top:2px;">Cust: ${s.customer} · Mutu: ${s.mutu}</div></div>
+                    <div>
+                      <strong style="color:var(--text-primary);">${s.proyek}</strong>
+                      <div style="font-size:0.68rem; color:var(--text-muted); margin-top:2px;">Cust: ${s.customer} · Mutu: ${s.mutu} ${s.mandor ? '· Mandor: ' + s.mandor : ''}</div>
+                      <!-- [DITAMBAHKAN]: Tanggal produksi -->
+                      <div style="font-size:0.68rem; color:var(--text-muted); margin-top:3px; display:flex; align-items:center; gap:4px;">
+                        <i class="fa-regular fa-calendar"></i> Tgl: ${s.tanggal || '-'}
+                      </div>
+                    </div>
                     <span class="badge-mutu">${Number(s.vol).toFixed(1)} m³ (${s.rit} Rit)</span>
                   </div>`;
               }
