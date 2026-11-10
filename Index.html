@@ -1031,7 +1031,7 @@
     .print-slip-container { display: none; }
 
     @media print {
-      @page { size: A5 landscape; margin: 3mm 5mm; }
+@page { size: 9.5in 11in; margin: 3mm 5mm; }
       html, body {
         width: 100% !important; height: 100% !important; margin: 0 !important; padding: 0 !important;
         background: white !important; color: black !important; -webkit-print-color-adjust: exact;
@@ -1040,7 +1040,7 @@
 
       .print-slip-container.active-print {
         display: flex !important; flex-direction: column !important; justify-content: space-between !important;
-        width: 100% !important; height: 98vh !important; box-sizing: border-box !important;
+width: 100% !important; height: 132mm !important; box-sizing: border-box !important;
         font-family: 'Inter', sans-serif !important; color: #000 !important; padding: 0 !important;
       }
 
@@ -2689,14 +2689,24 @@
         .getNextNoSJ(CURRENT_USER ? CURRENT_USER.spreadsheetId : '');
     }
 
-    function triggerPrintView(areaId) {
-      document.querySelectorAll('.print-slip-container').forEach(function(el) {
-        el.classList.remove('active-print');
-      });
-      var printEl = document.getElementById(areaId);
-      if (printEl) printEl.classList.add('active-print');
-      window.print();
-    }
+function triggerPrintView(areaId) {
+  document.querySelectorAll('.print-slip-container').forEach(function(el) {
+    el.classList.remove('active-print');
+  });
+  var printEl = document.getElementById(areaId);
+  if (printEl) printEl.classList.add('active-print');
+
+  // Paksa ukuran kertas 9.5" x 11" portrait
+  var old = document.getElementById('dynamicPageSize');
+  if (old) old.remove();
+  var st = document.createElement('style');
+  st.id = 'dynamicPageSize';
+  st.media = 'print';
+  st.textContent = '@page { size: 9.5in 11in; margin: 3mm 5mm; }';
+  document.head.appendChild(st);
+
+  window.print();
+}
 
     function handlePrintSJ() {
       if (!LAST_SAVED_SJ) return;
