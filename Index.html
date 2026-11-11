@@ -1031,7 +1031,7 @@
     .print-slip-container { display: none; }
 
     @media print {
-@page { size: 24.13cm 27.94cm; margin: 5mm 37mm 3mm 0; }
+@page { size: 27.94cm 24.13cm; margin: 0; }
       html, body {
         width: 100% !important; height: 100% !important; margin: 0 !important; padding: 0 !important;
         background: white !important; color: black !important; -webkit-print-color-adjust: exact;
@@ -1040,7 +1040,7 @@
 
       .print-slip-container.active-print {
         display: flex !important; flex-direction: column !important; justify-content: space-between !important;
-width: 100% !important; height: 128mm !important; box-sizing: border-box !important;
+position: absolute !important; left: 27.44cm !important; top: 0.2cm !important; width: 19.8cm !important; height: 12.8cm !important; transform-origin: 0 0 !important; transform: rotate(90deg) !important; box-sizing: border-box !important;
         font-family: 'Inter', sans-serif !important; color: #000 !important; padding: 0 !important;
       }
 
@@ -2702,7 +2702,7 @@ width: 100% !important; height: 128mm !important; box-sizing: border-box !import
       var st = document.createElement('style');
       st.id = 'dynamicPageSize';
       st.media = 'print';
-      st.textContent = '@page { size: 24.13cm 13.97cm; margin: 3mm 12mm; }';
+st.textContent = '@page { size: 27.94cm 24.13cm; margin: 0; }';
       document.head.appendChild(st);
 
       window.print();
